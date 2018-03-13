@@ -36,32 +36,32 @@ class TextStep extends Component {
     const {
       previousValue,
       step,
+    } = this.props;
+    const { message } = step;
+
+    Promise.resolve(message).then((msg) => {
+      console.log(msg);
+      this.setState({
+        message: msg.replace(/{previousValue}/g, previousValue),
+      });
+    });
+  }
+
+  renderComponent() {
+    const {
+      step,
       steps,
       previousStep,
       triggerNextStep,
     } = this.props;
     const { component } = step;
-    const { message } = step;
 
-    if (component) {
-      return React.cloneElement(component, {
-        step,
-        steps,
-        previousStep,
-        triggerNextStep,
-      });
-    }
-
-    Promise.resolve(message).then((msg) => {
-      console.log(msg);
-      this.setState({
-        message: msg,
-      });
+    return React.cloneElement(component, {
+      step,
+      steps,
+      previousStep,
+      triggerNextStep,
     });
-
-    // message = message.replace(/{previousValue}/g, previousValue);
-
-    // return message;
   }
 
   render() {
@@ -113,7 +113,8 @@ class TextStep extends Component {
             this.state.loading &&
             <Loading />
           }
-          { !this.state.loading && this.state.message }
+          {!this.state.loading && this.state.message}
+          {this.renderComponent()}
         </Bubble>
       </TextStepContainer>
     );
