@@ -172,7 +172,9 @@ class ChatBot extends Component {
     const lastStepIndex = previousSteps.length > 0 ? previousSteps.length - 1 : 0;
     const steps = this.generateRenderedStepsById();
     const previousValue = previousSteps[lastStepIndex].value;
-    return typeof message === 'function' ? message({ previousValue, steps }) : message;
+    const finalMessage = typeof message === 'function' ? message({ previousValue, steps }) : message;
+    console.log('--->', finalMessage);
+    return finalMessage;
   }
 
   generateRenderedStepsById() {
