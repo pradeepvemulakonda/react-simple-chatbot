@@ -29,6 +29,7 @@ class TextStep extends Component {
         }
       });
     }, delay);
+    this.renderMessage();
   }
 
   renderMessage() {
@@ -40,7 +41,7 @@ class TextStep extends Component {
       triggerNextStep,
     } = this.props;
     const { component } = step;
-    let { message } = step;
+    const { message } = step;
 
     if (component) {
       return React.cloneElement(component, {
@@ -51,9 +52,16 @@ class TextStep extends Component {
       });
     }
 
-    message = message.replace(/{previousValue}/g, previousValue);
+    Promise.resolve(message).then((msg) => {
+      console.log(msg);
+      this.setState({
+        message: msg,
+      });
+    });
 
-    return message;
+    // message = message.replace(/{previousValue}/g, previousValue);
+
+    // return message;
   }
 
   render() {
@@ -72,7 +80,6 @@ class TextStep extends Component {
     } = step;
 
     const showAvatar = user ? !hideUserAvatar : !hideBotAvatar;
-
     return (
       <TextStepContainer
         className="rsc-ts"
@@ -106,7 +113,7 @@ class TextStep extends Component {
             this.state.loading &&
             <Loading />
           }
-          { !this.state.loading && this.renderMessage() }
+          { !this.state.loading && this.state.message }
         </Bubble>
       </TextStepContainer>
     );
