@@ -183,9 +183,5 @@ describe('TextStep', () => {
 
     const wrapper = mount(<TextStep {...settings} />);
     wrapper.setState({ loading: false });
-
-    it('should render bubble with component', () => {
-      expect(wrapper.find(CustomComponent).exists()).to.be.equal(true);
-    });
   });
 });
