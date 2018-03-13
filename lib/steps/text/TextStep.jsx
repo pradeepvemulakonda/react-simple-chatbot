@@ -49,6 +49,7 @@ class TextStep extends Component {
   }
 
   renderComponent() {
+    console.log('In the render componenet');
     const {
       step,
       steps,
