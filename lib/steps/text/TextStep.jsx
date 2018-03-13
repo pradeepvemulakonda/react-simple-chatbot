@@ -58,6 +58,10 @@ class TextStep extends Component {
     } = this.props;
     const { component } = step;
 
+    if (component) {
+      return '';
+    }
+
     return React.cloneElement(component, {
       step,
       steps,
@@ -116,7 +120,6 @@ class TextStep extends Component {
             <Loading />
           }
           {!this.state.loading && this.state.message}
-          {this.props.step.component && this.renderComponent()}
         </Bubble>
       </TextStepContainer>
     );
