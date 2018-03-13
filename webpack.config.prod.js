@@ -11,6 +11,7 @@ module.exports = {
     library: 'ReactSimpleChatbot',
     libraryTarget: 'umd',
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
