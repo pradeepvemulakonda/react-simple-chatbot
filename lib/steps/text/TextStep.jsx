@@ -16,6 +16,7 @@ class TextStep extends Component {
     };
 
     this.renderMessage = this.renderMessage.bind(this);
+    this.renderComponent = this.renderComponent.bind(this);
   }
 
   componentDidMount() {
@@ -114,7 +115,7 @@ class TextStep extends Component {
             <Loading />
           }
           {!this.state.loading && this.state.message}
-          {this.renderComponent()}
+          {this.props.step.component && this.renderComponent()}
         </Bubble>
       </TextStepContainer>
     );
