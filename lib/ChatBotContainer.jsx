@@ -6,7 +6,7 @@ const ChatBotContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15);
   font-family: ${({ theme }) => theme.fontFamily};
-  overflow: hidden;
+  overflow: scroll;
   position: ${props => props.floating ? 'fixed' : 'relative'};
   bottom: ${props => props.floating ? '32px' : 'initial'};
   right: ${props => props.floating ? '32px' : 'initial'};
