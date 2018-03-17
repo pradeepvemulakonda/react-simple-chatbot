@@ -41,7 +41,6 @@ class TextStep extends Component {
     const { message } = step;
 
     Promise.resolve(message).then((msg) => {
-      console.log(msg);
       this.setState({
         message: msg.replace(/{previousValue}/g, previousValue),
       });
@@ -49,7 +48,6 @@ class TextStep extends Component {
   }
 
   renderComponent() {
-    console.log('In the render componenet');
     const {
       step,
       steps,
@@ -58,7 +56,7 @@ class TextStep extends Component {
     } = this.props;
     const { component } = step;
 
-    if (component) {
+    if (!component) {
       return '';
     }
 
@@ -120,6 +118,7 @@ class TextStep extends Component {
             <Loading />
           }
           {!this.state.loading && this.state.message}
+          {this.renderComponent()}
         </Bubble>
       </TextStepContainer>
     );
